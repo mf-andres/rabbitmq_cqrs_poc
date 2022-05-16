@@ -1,0 +1,2 @@
+class NoHandlerForCommandError(Exception):
+    pass
