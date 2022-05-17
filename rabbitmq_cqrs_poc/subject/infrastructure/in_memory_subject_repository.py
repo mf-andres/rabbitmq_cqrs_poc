@@ -1,4 +1,5 @@
 import json
+from typing import List
 
 from rabbitmq_cqrs_poc.subject.domain.subject import Subject
 
@@ -14,3 +15,10 @@ class InMemorySubjectRepository:
 
         with open('./files/subjects.json', 'w') as json_file:
             json.dump(subjects_dict, json_file)
+
+    def get_all(self) -> List[Subject]:
+        with open('./files/subjects.json', 'r') as json_file:
+            subjects_dict = json.load(json_file)
+
+        subjects = subjects_dict["subjects"]
+        return subjects

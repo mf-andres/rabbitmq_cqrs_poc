@@ -2,7 +2,7 @@ import json
 
 import pika
 
-from rabbitmq_cqrs_poc.shared.infrastructure.in_memory_subject_repository import InMemorySubjectRepository
+from rabbitmq_cqrs_poc.subject.infrastructure.in_memory_subject_repository import InMemorySubjectRepository
 from rabbitmq_cqrs_poc.subject.application import subject_creator
 from rabbitmq_cqrs_poc.subject.domain.subject import Subject
 
@@ -27,7 +27,6 @@ def launch():
         )
 
     def callback(ch, method, properties, body):
-        print(" [x] %r:%r" % (method.routing_key, body))
         command = json.loads(body)
         subject = Subject(
             command["id_"],

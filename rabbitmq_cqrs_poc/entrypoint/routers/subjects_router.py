@@ -18,6 +18,6 @@ def get(request: Request):
     query_bus = request.app.query_bus
     subjects_response: SubjectsResponse = query_bus.ask(GetSubjectsQuery())
     subjects = [
-        SubjectItem(id_=subject.id_, name=subject.title) for subject in subjects_response.subjects
+        SubjectItem(id_=subject["id_"], name=subject["name"]) for subject in subjects_response.subjects
     ]
     return subjects
